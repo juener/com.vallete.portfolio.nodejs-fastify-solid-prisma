@@ -1,0 +1,102 @@
+## first steps
+
+### to init the package.json
+npm init -y 
+
+### install some resources as development dependency
+npm i typescript @types/node tsx tsup -D
+
+### create the tsconfig.json
+npx tsc --init
+
+### to get the new features, change in tsconfig.json
+"target": "es2016" to "target": "es2020"
+
+### we are going to use the fastify 
+npm i fastify
+
+### install and initialize the prisma
+npm i prisma -D
+npx prisma init
+npm i @prisma/client
+
+### using prisma
+npx prisma migrate dev
+npx prisma studio
+
+______### to use cookies 
+npm i @fastify/cookie
+
+### to use .env files
+npm i dotenv
+
+### to use zod
+npm i zod
+
+### install and configure the eslint 
+npm i eslint -D
+npx eslint --init
+
+### create the .eslintignore to ignore some folders
+node_modules dist build
+
+______### let's run that
+npx tsx src/server.ts
+
+### or add the "dev": "tsx watch src/server.ts" to the package.json and just run
+npm run dev
+
+
+## let's configure the docker and its images https://hub.docker.com/r/bitnami/postgresql (search for creating a db on first run)
+
+### creating the postgresql image
+docker run --name nodejs-fastify-solid-prisma-docker_pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=passDocker -e POSTGRESQL_DATABASE=nodejs-fastify-solid-prisma-docker_pg -p 5432:5432 bitnami/postgresql
+
+### however, we can use the docker-compose to do the samething, so, make sure we have the docker-compose.yml configured and run the following command:
+docker compose up -d OR docker compose stop  (don't use docker compose down, since the down command remove the instance and we are going to lose the data)
+
+### common commands for docker
+docker ps -a OR docker ps
+docker rm docker_image_name
+docker start docker_image_name
+docker logs docker_image_name OR docker logs docker_image_name -f
+
+
+
+## for this project we are going to use knex + sqlite3
+
+### install knex and its driver for sqlite3
+### https://knexjs.org/guide/#configuration-options
+npm install knex sqlite3
+
+### add the script "knex": "node --no-warnings --loader tsx ./node_modules/.bin/knex" to the package.json and just run when you want to migrate
+npm run knex -- migrate:make create-transactions
+
+### run whenever the migration is ready to be deployed
+npm run knex -- migrate:latest or npm run knex -- migrate:rollback
+
+
+## tests
+
+### we are going to use the vitest as development dependency
+npm i vitest -D 
+
+### add "test": "vitest" to the package.json and just run
+npm run test
+
+### install the supertest as development dependency 
+npm i supertest -D
+npm i -D @types/supertest
+
+
+## deploy 
+
+### since our code is TS, we got to convert it to JS to deploy that
+npm i tsup -D
+
+### add "build": "tsup src" to the package.json and just run 
+npm run build
+or use "build": "tsup src --out-dir build" to define another out directory
+
+### create the .eslintignore to ignore some folders
+node_modules dist build
