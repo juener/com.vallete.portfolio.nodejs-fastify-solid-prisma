@@ -4,10 +4,11 @@ import { AuthenticateUseCase } from './authenticate'
 import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 import { hash } from 'bcryptjs'
 
-let usersRepository: InMemoryUsersRepository
-let authenticateUseCase: AuthenticateUseCase
 
 describe('Authenticate Use Case', () => {
+    let usersRepository: InMemoryUsersRepository
+    let authenticateUseCase: AuthenticateUseCase
+    
     beforeEach(() => {
         usersRepository = new InMemoryUsersRepository()
         authenticateUseCase = new AuthenticateUseCase(usersRepository)

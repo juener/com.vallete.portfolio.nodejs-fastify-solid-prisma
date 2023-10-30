@@ -63,17 +63,6 @@ docker logs docker_image_name OR docker logs docker_image_name -f
 
 
 
-## for this project we are going to use knex + sqlite3
-
-### install knex and its driver for sqlite3
-### https://knexjs.org/guide/#configuration-options
-npm install knex sqlite3
-
-### add the script "knex": "node --no-warnings --loader tsx ./node_modules/.bin/knex" to the package.json and just run when you want to migrate
-npm run knex -- migrate:make create-transactions
-
-### run whenever the migration is ready to be deployed
-npm run knex -- migrate:latest or npm run knex -- migrate:rollback
 
 
 ## tests
