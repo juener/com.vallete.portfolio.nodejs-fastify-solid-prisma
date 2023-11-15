@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  postgresql:
+  postgresql-service:
     image: bitnami/postgresql
     ports:
       - "5432:5432"
@@ -11,8 +11,7 @@ services:
       - POSTGRESQL_DATABASE=nodejs-fastify-solid-prisma-docker_pg
   node: 
     build: . 
-    command: >
-      sh -c "npm run build && npm run start"
+    command: "npm run dev""
     working_dir: /home/node/app
     environment:
       - NODE_ENV=production
