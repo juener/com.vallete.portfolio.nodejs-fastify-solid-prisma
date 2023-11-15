@@ -11,7 +11,8 @@ services:
       - POSTGRESQL_DATABASE=nodejs-fastify-solid-prisma-docker_pg
   node: 
     build: . 
-    command: "npm run start"
+    command: >
+      sh -c "npm run build && npm run start"
     working_dir: /home/node/app
     environment:
       - NODE_ENV=production
