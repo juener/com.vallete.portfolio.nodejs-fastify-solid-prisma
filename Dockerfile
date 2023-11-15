@@ -5,6 +5,4 @@ COPY package*.json ./
 RUN npm install
 COPY --chown=node:node . .
 RUN npx prisma generate
-RUN npx prisma migrate dev
 EXPOSE 3601
-CMD ["./usr/wait-for-it.sh", "postgresql:5432", "--", "npm", "run", "start"]
