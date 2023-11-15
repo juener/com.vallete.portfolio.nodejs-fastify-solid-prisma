@@ -4,4 +4,5 @@ WORKDIR /home/node/app
 COPY package*.json ./
 RUN npm install
 COPY --chown=node:node . .
+RUN npx prisma generate
 EXPOSE 3601
