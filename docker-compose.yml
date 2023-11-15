@@ -4,8 +4,18 @@ services:
   nodejs-fastify-solid-prisma-docker_pg:
     image: bitnami/postgresql
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       - POSTGRESQL_USERNAME=docker
       - POSTGRESQL_PASSWORD=passDocker
       - POSTGRESQL_DATABASE=nodejs-fastify-solid-prisma-docker_pg
+  node: 
+    build: . 
+    command: "npm run start"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    expose: 
+      - "3601"
+    ports:
+      - "3601:3601"
