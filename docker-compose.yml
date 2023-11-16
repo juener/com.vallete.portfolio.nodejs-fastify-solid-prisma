@@ -3,6 +3,8 @@ version: '3'
 services:
   postgresql-service:
     image: bitnami/postgresql
+    container_name: portfolio_3601_postgresql
+    image: portfolio_3601_postgresql:tag
     expose:
       - "5432"
     # do not use the tag ports since only the node will use this postgresql
@@ -11,6 +13,8 @@ services:
       - POSTGRESQL_PASSWORD=passDocker
       - POSTGRESQL_DATABASE=db
   node: 
+    container_name: portfolio_3601_node
+    image: portfolio_3601_node:tag
     build: . 
     command: >
       sh -c "npx prisma migrate dev && npm run dev"
