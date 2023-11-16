@@ -7,8 +7,8 @@ services:
       - "5432"
     # do not use the tag ports since only the node will use this postgresql
     environment:
-      - ${POSTGRESQL_USERNAME}
-      - ${POSTGRESQL_PASSWORD}
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=passDocker
       - POSTGRESQL_DATABASE=db
   node: 
     build: . 
@@ -18,8 +18,8 @@ services:
     environment:
       - NODE_ENV=production
     expose: 
-      - "${APP_PORT}" # .env
+      - "3601"
     ports:
-      - "${APP_PORT}:${APP_PORT}"
+      - "3601:3601"
     depends_on:
       - postgresql-service
